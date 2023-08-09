@@ -179,9 +179,7 @@ void keyboard_post_init_user(void) {
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    state = update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
-    // state = update_tri_layer_state(state, _LOWER, _MAC_RAISE, _MAC_ADJUST);
-    return state;
+    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
 
 bool is_changing_windows = false;
@@ -213,9 +211,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 is_changing_windows = true;
                 register_code16(KC_LGUI);
             }
-            register_code16(KC_TILDE);
+            register_code16(KC_GRV);
         } else {
-            unregister_code16(KC_TILDE);
+            unregister_code16(KC_GRV);
         }
         return false;
     case LOWER:
@@ -237,10 +235,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return true;
 }
-
-// In your rules.mk make sure you have:
-// OLED_DRIVER_ENABLE = yes
-// WPM_ENABLE = yes
 
 #ifdef OLED_ENABLE
 
